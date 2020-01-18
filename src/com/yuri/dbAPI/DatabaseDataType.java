@@ -1,6 +1,6 @@
 package dbAPI;
 
-enum DatabaseDataType{
+public enum DatabaseDataType{
 	BOOLEAN,
 	BYTEARRAY,
 	DATETIME,
