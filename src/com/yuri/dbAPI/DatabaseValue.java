@@ -4,7 +4,7 @@ package dbAPI;
 public class DatabaseValue{
 	public Object Value;
 	private DatabaseDataType type;
-	private String dbType;
+	private String dbType;//The type in sql language
 
 	public DatabaseValue(Object value, DatabaseDataType type, String dbType){
 		Value = value;
@@ -26,18 +26,18 @@ public class DatabaseValue{
 	
 	private @Nullable Object convertTo(Class c){
 		try{
-			return (c)value;
-		} catch(Exception e){
+			return c.cast(Value);
+		} catch(ClassCastException e){
 			return null;
 		}
 	}
 
 	public @Nullable Boolean getBoolean(){
-		return convertTo(boolean);
+		return (Boolean)convertTo(boolean.class);
 	}
 
 	public @Nullable byte[] getByteArray(){
-		return convertTo(byte[]);
+		return (byte[])convertTo(byte[].class);
 	}
 
 	//TODO: impliment for date-time type
@@ -46,7 +46,7 @@ public class DatabaseValue{
 	}*/
 
 	public @Nullabe Double getDouble(){
-		return convertTo(double);
+		return (Double)convertTo(double.class);
 	}
 
 	/*public @Nullable Enum getEnum(){
@@ -54,10 +54,10 @@ public class DatabaseValue{
 	}*/
 
 	public @Nullable Integer getInteger(){
-		return convertTo(int);
+		return (Integer)convertTo(int.class);
 	}
 
 	public @Nullable String getString(){
-		return convertTo(String);
+		return (String)convertTo(String.class);
 	}
 }

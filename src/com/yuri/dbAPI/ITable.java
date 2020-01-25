@@ -15,21 +15,21 @@ public interface ITable extends Iterable<IRow>{
 	//Returns row at 'index'
 	public IRow getRow(int index);
 	//Returns row with specified key
-	public IRow getRow(IColumn keyCol, DatabaseValue keyValue);
+	public IRow getRow(final IColumn keyCol, final DatabaseValue keyValue);
 	
 	//Runs the insert sql command
-	public void insert(IRow newRow);
-	public void insert(IRow[] rows);
+	public void insert(final IRow newRow);
+	public void insert(final IRow[] rows);
 	//Runs the select sql command
-	public IDatabaseReader select(IColumn[] columns);
-	public IDatabaseReader select(IColumn[] columns, String whereCondition);
+	public IDatabaseReader select(final IColumn[] columns);
+	public IDatabaseReader select(final IColumn[] columns, String whereCondition);
 	public IDatabaseReader selectAll();
 	public IDatabaseReader selectAll(String whereCondition);
 	//Runs the update sql command
-	public void update(IRow columnValueList);
-	public void update(IRow columnValueList, String whereCondition);
-	public void update(IRow[] columnValueLists);
-	public void update(IRow[] columnValueLists, String whereCondition);
+	public void update(final IRow columnValueList);
+	public void update(final IRow columnValueList, String whereCondition);
+	public void update(final IRow[] columnValueLists);
+	public void update(final IRow[] columnValueLists, String whereCondition);
 	//Runs the delete sql command
 	public void delete(String whereCondition);
 }

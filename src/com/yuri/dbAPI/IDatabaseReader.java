@@ -1,6 +1,8 @@
 package dbAPI;
 
-public interface IDatabaseReader extends Iterable<IRow>, Iterator<IRow>{
+import java.util.Iterator;
+
+public interface IDatabaseReader extends Iterable<IRow>, Iterator<IRow> {
 	//Returns a row by 'index'
 	public IRow getRow(int index);
 	//Retruns all the rows
