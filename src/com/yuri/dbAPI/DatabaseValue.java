@@ -24,7 +24,7 @@ public class DatabaseValue{
 	//Getters for different data types
 	//if can't convert return null
 	
-	private @Nullable Object convertTo(Class c){
+	private Object convertTo(Class c){
 		try{
 			return c.cast(Value);
 		} catch(ClassCastException e){
@@ -32,32 +32,32 @@ public class DatabaseValue{
 		}
 	}
 
-	public @Nullable Boolean getBoolean(){
+	public Boolean getBoolean(){
 		return (Boolean)convertTo(boolean.class);
 	}
 
-	public @Nullable byte[] getByteArray(){
+	public byte[] getByteArray(){
 		return (byte[])convertTo(byte[].class);
 	}
 
 	//TODO: impliment for date-time type
-	/*public @Nullable DTTYPE getDTTYPE(){
+	/*public DTTYPE getDTTYPE(){
 	  	return convertTo(DTTYPE);
 	}*/
 
-	public @Nullabe Double getDouble(){
+	public Double getDouble(){
 		return (Double)convertTo(double.class);
 	}
 
-	/*public @Nullable Enum getEnum(){
+	/*public Enum getEnum(){
 		return convertTo(Enum);
 	}*/
 
-	public @Nullable Integer getInteger(){
+	public Integer getInteger(){
 		return (Integer)convertTo(int.class);
 	}
 
-	public @Nullable String getString(){
+	public String getString(){
 		return (String)convertTo(String.class);
 	}
 

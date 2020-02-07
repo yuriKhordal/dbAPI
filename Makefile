@@ -17,15 +17,16 @@ $(jar): $(class)
 	if [ -e .android ]; then \
 		dx --dex --no-strict --verbose --output=$(jar) $(build); \
 	else \
-		jar --verbose -cvf $(jar) $(build); \
+		jar -cvf $(jar) $(build); \
 	fi
 all:
+	mkdir -p $(build) $(bin); \
 	if [ -e .android ]; then \
 		ecj $(src)/*.java -d $(build) -verbose; \
 		dx $(build) --dex --no-strict --output=$(jar) --verbose; \
 	else \
-		javac $(src)/*.java -d $(build) -verbose \
-		jar $(build) -cvf $(jar) --verbose \
+		javac $(src)/*.java -d $(build) -verbose; \
+		jar -cvf $(jar) $(build); \
 	fi
 build: $(class)
 compile: $(jar)
