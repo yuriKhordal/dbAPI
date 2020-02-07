@@ -60,4 +60,9 @@ public class DatabaseValue{
 	public @Nullable String getString(){
 		return (String)convertTo(String.class);
 	}
+
+	@Override
+	public String toString() {
+		return Value.toString();
+	}
 }

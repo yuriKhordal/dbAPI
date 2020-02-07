@@ -19,23 +19,23 @@ public interface IDatabaseHelper{
 	//Insert values into respective calumns
 	public void insert(String table, final String[] columns, final String[] values);
 	//Updates the table
-	public void update(final ITable table, final IRow row);
-	public void update(final ITable table, final IRow row, String whereCondition);
-	public void update(final ITable table, final IRow[] rows);
-	public void update(final ITable table, final IRow[] rows, String whereCondition);
+	public void update(String table, final IRow row);
+	public void update(String table, final IRow row, String whereCondition);
+	public void update(String table, final IRow[] rows);
+	public void update(String table, final IRow[] rows, String whereCondition);
 	//Selects values from a single or multiple tables
-	public IDatabaseReader select(final ITable table, final IColumn[] columns);
-	public IDatabaseReader select(final ITable table, final IColumn[] columns, String whereCondition);
-	public IDatabaseReader select(final ITable[] tables, final IColumn[] columns);
-	public IDatabaseReader select(final ITable[] tables, final IColumn[] columns, String whereCondition);
-	public IDatabaseReader selectAll(final ITable table, final IColumn[] columns);
-	public IDatabaseReader selectAll(final ITable table, final IColumn[] columns, String whereCondition);
-	public IDatabaseReader selectAll(final ITable[] tables, final IColumn[] columns);
-	public IDatabaseReader selectAll(final ITable[] tables, final IColumn[] columns, String whereCondition);
+	public IDatabaseReader select(String table, String[] columns);
+	public IDatabaseReader select(String table, String[] columns, String whereCondition);
+	public IDatabaseReader select(String[] tables, String[] columns);
+	public IDatabaseReader select(String[] tables, String[] columns, String whereCondition);
+	public IDatabaseReader selectAll(String table);
+	public IDatabaseReader selectAll(String table, String whereCondition);
+	public IDatabaseReader selectAll(String[] tables);
+	public IDatabaseReader selectAll(String[] tables, String whereCondition);
 	//Deletes from table
-	public void delete(final ITable table, String whereCondition);
+	public void delete(String table, String whereCondition);
 	//Drops the table
-	public void drop(final ITable table);
+	public void drop(String table);
 	//Close the database
 	public void close(); 
 }

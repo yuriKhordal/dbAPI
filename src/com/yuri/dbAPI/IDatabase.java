@@ -3,6 +3,8 @@ package dbAPI;
 public interface IDatabase extends Iterable<ITable>{
 	//Returns all the tables
 	public ITable[] getTables();
+	//Returns table called 'name'
+	public ITable getTable(String name);
 
 	//Open the database
 	public void open();
@@ -23,10 +25,10 @@ public interface IDatabase extends Iterable<ITable>{
 	public IDatabaseReader select(final ITable table, final IColumn[] columns, String whereCondition);
 	public IDatabaseReader select(final ITable[] tables, final IColumn[] columns);
 	public IDatabaseReader select(final ITable[] tables, final IColumn[] columns, String whereCondition);
-	public IDatabaseReader selectAll(final ITable table, final IColumn[] columns);
-	public IDatabaseReader selectAll(final ITable table, final IColumn[] columns, String whereCondition);
-	public IDatabaseReader selectAll(final ITable[] tables, final IColumn[] columns);
-	public IDatabaseReader selectAll(final ITable[] tables, final IColumn[] columns, String whereCondition);
+	public IDatabaseReader selectAll(final ITable table);
+	public IDatabaseReader selectAll(final ITable table, String whereCondition);
+	public IDatabaseReader selectAll(final ITable[] tables);
+	public IDatabaseReader selectAll(final ITable[] tables, String whereCondition);
 	//Deletes from table
 	public void delete(final ITable table, String whereCondition);
 	//Drops the table

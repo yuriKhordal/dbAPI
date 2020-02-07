@@ -8,7 +8,7 @@ public interface IColumn{
 	//Returns the type of data
 	public DatabaseDataType getType();
 	//Returns the constraints of the column
-	public ConstraintsEnum getConstraints();
+	public Constraint[] getConstraints();
 	//Checks whether the column has the specified constraint
 	public boolean hasConstraint(ConstraintsEnum constraint);
 }

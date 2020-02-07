@@ -15,6 +15,8 @@ public interface IRow extends Iterable<DatabaseCell>{
 	//Returns the cell at 'column'
 	public DatabaseCell getCell(IColumn column);
 	public DatabaseCell getCell(String column);
+	//Returns all the cells
+	public DatabaseCell[] getCells();
 	//Sets a value at 'index'
 	public void setValue(int index, final DatabaseValue value);
 	//Sets a value of 'column'

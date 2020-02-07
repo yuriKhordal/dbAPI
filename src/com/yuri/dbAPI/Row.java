@@ -11,18 +11,18 @@ public class Row implements IRow, Iterable<DatabaseCell> {
 		this.cells = cells.clone();
 	}
 
-	//----IRow implimintation----
+	// ---- IRow implimintation ----
 
 	// Returns collumn at index
 	public IColumn getColumn(int index) {
-		return cells[index].Column;
+		return cells[index].getColumn();
 	}
 
 	// Returns collumn called 'name'
 	public IColumn getColumn(String name) throws IllegalArgumentException {
 		for (DatabaseCell cell : cells) {
-			if (cell.Column.getName() == name) {
-				return cell.Column;
+			if (cell.getColumn().getName() == name) {
+				return cell.getColumn();
 			}
 		}
 		throw new IllegalArgumentException("'" + name + "' not found in the row");
@@ -32,7 +32,7 @@ public class Row implements IRow, Iterable<DatabaseCell> {
 	public IColumn[] getColumns() {
 		IColumn[] cols = new IColumn[cells.length];
 		for (int i = 0; i < cols.length; i++) {
-			cols[i] = cells[i].Column;
+			cols[i] = cells[i].getColumn();
 		}
 		return cols;
 	}
@@ -72,6 +72,11 @@ public class Row implements IRow, Iterable<DatabaseCell> {
 		return cells[getIndex(column)];
 	}
 
+	//Retrun all the cells
+	public DatabaseCell[] getCells(){
+		return cells.clone();
+	}
+
 	//Returns all the values sorted by index
 	public DatabaseValue[] getValues() {
 		DatabaseValue values[] = new DatabaseValue[cells.length];
@@ -100,7 +105,7 @@ public class Row implements IRow, Iterable<DatabaseCell> {
 
 	}
 
-	// ----Iterable implimintation----
+	// ---- Iterable implimintation ----
 
 	public Iterator<DatabaseCell> iterator() {
 		return new ArrayIterator<DatabaseCell>(cells);

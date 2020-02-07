@@ -5,7 +5,7 @@ name=dbAPI.jar
 jar=$(bin)/$(name)
 class=$(build)/*.class
 
-.PHONY: build compile clean
+.PHONY: all build compile clean
 
 $(build)/%.class: $(src)/%.java
 	if [ -e .android ]; then \
@@ -18,6 +18,14 @@ $(jar): $(class)
 		dx --dex --no-strict --verbose --output=$(jar) $(build); \
 	else \
 		jar --verbose -cvf $(jar) $(build); \
+	fi
+all:
+	if [ -e .android ]; then \
+		ecj $(src)/*.java -d $(build) -verbose; \
+		dx $(build) --dex --no-strict --output=$(jar) --verbose; \
+	else \
+		javac $(src)/*.java -d $(build) -verbose \
+		jar $(build) -cvf $(jar) --verbose \
 	fi
 build: $(class)
 compile: $(jar)
