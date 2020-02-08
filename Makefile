@@ -1,9 +1,10 @@
 name=dbAPI
 bin=bin
 build=build
-src=src/$(name)
+source=src
 
 jar=$(bin)/$(name).jar
+src=$(source)/$(name)
 classpath=$(build)/$(name)
 class=$(classpath)/*.class
 
@@ -17,17 +18,17 @@ $(jar): $(class)
 	fi
 $(classpath)/%.class: $(src)/%.java
 	if [ -e .android ]; then \
-		ecj $< -d $(build) -verbose; \
+		ecj $< -d $(build) -classpath $(build) -sourcepath $(source) -parameters -verbose; \
 	else \
-		javac $< -d $(build) -cp $(build) -parameters -verbose; \
+		javac $< -d $(build) -classpath $(build) -sourcepath $(source) -parameters -verbose; \
 	fi
 all:
 	mkdir -p $(build) $(bin); \
 	if [ -e .android ]; then \
-		ecj $(src)/*.java -d $(build) -verbose; \
+		ecj $(src)/*.java -d $(build) -classpath $(build) -sourcepath $(source) -parameters -verbose; \
 		dx $(build) --dex --no-strict --output=$(jar) --verbose; \
 	else \
-		javac $(src)/*.java -d $(build) -parameters -verbose; \
+		javac $(src)/*.java -d $(build) -classpath $(build) -sourcepath $(source) -parameters -verbose; \
 		jar -cvf $(jar) -C $(build) .; \
 	fi
 build: $(class)
