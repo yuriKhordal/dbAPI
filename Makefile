@@ -19,7 +19,7 @@ $(classpath)/%.class: $(src)/%.java
 	if [ -e .android ]; then \
 		ecj $< -d $(build) -verbose; \
 	else \
-		javac $< -d $(build) -parameters -verbose; \
+		javac $< -d $(build) -cp $(build) -parameters -verbose; \
 	fi
 all:
 	mkdir -p $(build) $(bin); \
