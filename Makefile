@@ -6,7 +6,7 @@ source=src
 jar=$(bin)/$(name).jar
 src=$(source)/$(name)
 classpath=$(build)/$(name)
-class=$(classpath)/*.class
+class=$(patsubst $(src)/%.java, $(classpath)/%.class, $(wildcard $(src)/*.java) )
 
 .PHONY: all build compile clean edit
 
