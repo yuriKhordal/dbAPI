@@ -4,21 +4,14 @@ package dbAPI;
 public class DatabaseValue{
 	public Object Value;
 	private DatabaseDataType type;
-	private String dbType;//The type in sql language
 
-	public DatabaseValue(Object value, DatabaseDataType type, String dbType){
+	public DatabaseValue(Object value, DatabaseDataType type){
 		Value = value;
 		this.type = type;
-		this.dbType = dbType;
 	}
 
 	public DatabaseDataType getType(){
 		return type;
-	}
-
-	//Returns the type as defined in the database, therefore can be used directly in sql commands
-	public String getDatabaseType(){
-		return dbType;
 	}
 	
 	//Getters for different data types

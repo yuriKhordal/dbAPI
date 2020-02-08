@@ -12,6 +12,10 @@ public class DatabaseCell{
         column = col;
         Value = val;
     }
+    
+    public DatabaseCell(IColumn col, Object value, DatabaseDataType type){
+        this(col, new DatabaseValue(value, type));
+    }
 
     public IColumn getColumn(){
         return column;
