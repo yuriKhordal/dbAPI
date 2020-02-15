@@ -9,7 +9,14 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
     protected IDatabaseHelper helper;
 
     //Initialize tables and helper
-    public AbstractDatabase(Iterable<ITable> tables, IDatabaseHelper helper) {
+    public AbstractDatabase(IDatabaseHelper helper, Iterable<ITable> tables) {
+        this.tables = new ArrayList<ITable>();
+        for(ITable table : tables){
+            this.tables.add(table);
+        }
+        this.helper = helper;
+    }
+    public AbstractDatabase(IDatabaseHelper helper, ITable...tables) {
         this.tables = new ArrayList<ITable>();
         for(ITable table : tables){
             this.tables.add(table);
@@ -67,12 +74,6 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
     }
 	public void update(final ITable table, final IRow row, String whereCondition){
         helper.update(table.getName(), row, whereCondition);
-    }
-	public void update(final ITable table, final IRow[] rows){
-        helper.update(table.getName(), rows);
-    }
-	public void update(final ITable table, final IRow[] rows, String whereCondition){
-        helper.update(table.getName(), rows, whereCondition);
     }
 
 	//Selects values from a single or multiple tables

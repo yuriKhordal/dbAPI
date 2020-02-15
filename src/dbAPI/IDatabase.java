@@ -18,8 +18,6 @@ public interface IDatabase extends Iterable<ITable>{
 	//Updates the table
 	public void update(final ITable table, final IRow row);
 	public void update(final ITable table, final IRow row, String whereCondition);
-	public void update(final ITable table, final IRow[] rows);
-	public void update(final ITable table, final IRow[] rows, String whereCondition);
 	//Selects values from a single or multiple tables
 	public IDatabaseReader select(final ITable table, final IColumn[] columns);
 	public IDatabaseReader select(final ITable table, final IColumn[] columns, String whereCondition);

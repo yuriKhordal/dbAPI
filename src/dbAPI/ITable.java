@@ -28,8 +28,6 @@ public interface ITable extends Iterable<IRow>{
 	//Runs the update sql command
 	public void update(final IRow columnValueList);
 	public void update(final IRow columnValueList, String whereCondition);
-	public void update(final IRow[] columnValueLists);
-	public void update(final IRow[] columnValueLists, String whereCondition);
 	//Runs the delete sql command
 	public void delete(String whereCondition);
 }

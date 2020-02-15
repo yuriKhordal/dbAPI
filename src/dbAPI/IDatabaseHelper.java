@@ -21,8 +21,6 @@ public interface IDatabaseHelper{
 	//Updates the table
 	public void update(String table, final IRow row);
 	public void update(String table, final IRow row, String whereCondition);
-	public void update(String table, final IRow[] rows);
-	public void update(String table, final IRow[] rows, String whereCondition);
 	//Selects values from a single or multiple tables
 	public IDatabaseReader select(String table, String[] columns);
 	public IDatabaseReader select(String table, String[] columns, String whereCondition);
