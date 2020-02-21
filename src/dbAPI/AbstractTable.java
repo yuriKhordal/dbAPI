@@ -1,22 +1,27 @@
 package dbAPI;
 
-//an abstract implementation of ITable
+/**An abstract implementation of ITable*/
 public abstract class AbstractTable implements ITable, Iterable<IRow> {
+	/**An array of the columns in this table*/
     protected IColumn[] columns;
 
-    //Initialize name and columns
+    /**Initialize this table with a list of columns
+     * @param columns An array of columns to put in this table
+     */
     public AbstractTable(IColumn[] columns) {
         this.columns = columns.clone();
     }
 
     // ---- ITable implementation ----
 
-	//Returns column at 'index'
+
 	public IColumn getColumn(int index){
         return columns[index];
     }
 
-	//Returns column named 'name
+	/** {@inheritDoc}
+	 * @throws IllegalArgumentException If no column with the given name is found in the table
+	 */
     public IColumn getColumn(String name)
     throws IllegalArgumentException{
         for(IColumn column : columns){
@@ -28,12 +33,12 @@ public abstract class AbstractTable implements ITable, Iterable<IRow> {
             "No column called '" + name + "' in table '" + this.getName() + "'");
     }
 
-	//Returns all the columns
+
 	public IColumn[] getColumns(){
         return columns.clone();
     }
 
-	//Returns the number of columns
+
 	public int getColumnCount(){
         return columns.length;
     }

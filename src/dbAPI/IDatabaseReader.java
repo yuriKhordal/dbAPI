@@ -2,14 +2,26 @@ package dbAPI;
 
 import java.util.Iterator;
 
+/**An interface that represents a reader that reads rows from the database*/
 public interface IDatabaseReader extends Iterable<IRow>, Iterator<IRow> {
-	//Returns a row by 'index'
+	/**Get a row with a specified index
+	 * @param index The index of the row
+	 * @return The row at the given index, eg 4 would return the 4th row
+	 */
 	public IRow getRow(int index);
-	//Retruns all the rows
+	
+	/**Get all the rows
+	 * @return An array of all the rows
+	 */
 	public IRow[] getAllRows();
 
-	//Checks if there are rows left
+	/**Check if there are rows left
+	 * @return True if there are rows left, otherwise False
+	 */
 	public boolean hasNext();
-	//Returns the next value
+	
+	/**Get the next row
+	 * @return The next row
+	 */
 	public IRow next();
 }

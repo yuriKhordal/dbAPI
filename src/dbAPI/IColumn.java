@@ -1,14 +1,30 @@
 package dbAPI;
 
+/**An interface that represents a column in a database table*/
 public interface IColumn{
-	//Returns the index of the column
+	/**Get the index of this column
+	 * @return The index of this column
+	 */
 	public int getIndex();
-	//Returns the name of the column
+	
+	/**Get the name of this column
+	 * @return The name of this column
+	 */
 	public String getName();
-	//Returns the type of data
+	
+	/**Get the type of data in this column
+	 * @return The database type of data in this column
+	 */
 	public DatabaseDataType getType();
-	//Returns the constraints of the column
+	
+	/**Get all of the constraints of this column
+	 * @return An array of constraints for this column
+	 */
 	public Constraint[] getConstraints();
-	//Checks whether the column has the specified constraint
+	
+	/**Check whether this column has a specified constraint
+	 * @param constraint The constraint to check this column for
+	 * @return True if this column has the given constraint, otherwise False
+	 */
 	public boolean hasConstraint(ConstraintsEnum constraint);
 }
