@@ -33,7 +33,7 @@ public class Column implements IColumn {
 	 * @param type The database data type of the column
 	 * @param constraints An array of constraints for this column
 	 */
-	public Column(String name, int index, DatabaseDataType type, Constraint[] constraints) {
+	public Column(String name, int index, DatabaseDataType type, Constraint ... constraints) {
 		this(name, index, type);
 		this.constraints = new Constraint[constraints.length];
 		for (int i = 0; i < constraints.length; i++) {
