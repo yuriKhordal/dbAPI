@@ -1,5 +1,7 @@
 package dbAPI;
 
+import java.time.LocalDateTime;
+
 /**Represents a value and a type in a database*/
 public class DatabaseValue{
 	/**The value in {@link Object} form*/
@@ -52,10 +54,12 @@ public class DatabaseValue{
 		return (byte[])convertTo(byte[].class);
 	}
 
-	//TODO: implement for date-time type
-	/*public DTTYPE getDTTYPE(){
-	  	return convertTo(DTTYPE);
-	}*/
+	/**Get the value in {@link LocalDateTime} form
+	 * @return The value in {@link LocalDateTime} form. if can't convert, null
+	 */
+	public LocalDateTime getDateTime(){
+	  	return (LocalDateTime)convertTo(LocalDateTime.class);
+	}
 
 	/**Get the value in {@link Double} form
 	 * @return The value in {@link Double} form. if can't convert, null
