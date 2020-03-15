@@ -52,7 +52,7 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
 
 	public void create(final ITable table){
         tables.add(table);
-        helper.create(table.getName());
+        helper.create(table.getName(), table.getColumns());
     }
 
 	public void insert(final ITable table, final IRow row){

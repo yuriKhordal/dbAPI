@@ -27,8 +27,9 @@ public interface IDatabaseHelper{
 	
 	/**Create the specified table in the database
 	 * @param table The table to create
+	 * @param columns The columns of the table
 	 */
-	public void create(String table);
+	public void create(String table, IColumn[] columns);
 	
 	/**Insert specified values in specified columns inside a specified table
 	 * @param table The name of the table in the database
@@ -49,6 +50,11 @@ public interface IDatabaseHelper{
 	 * @param whereCondition the condition in sql format(without 'WHERE')
 	 */
 	public void update(String table, final IRow row, String whereCondition);
+	
+	/**Execute an sql statement
+	 * @param sql The sql statement
+	 */
+	public void executeSql(String sql);
 	
 	/**Select all the rows from a specified table and read the specified columns
 	 * @param table The name of the table in the database
@@ -105,6 +111,12 @@ public interface IDatabaseHelper{
 	 * @return A reader with the selects results
 	 */
 	public IDatabaseReader selectAll(String[] tables, String whereCondition);
+	
+	/**Execute an sql statement and return results in a {@link IDatabaseReader}
+	 * @param sql The sql statement to execute
+	 * @return An {@link IDatabaseReader} with the results
+	 */
+	public IDatabaseReader readSql(String sql);
 	
 	/**Convert DatabaseValue to it's string form in sql statements
 	 * @param value The database value to convert to sql statment string form
