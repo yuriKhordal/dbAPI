@@ -1,12 +1,14 @@
 package dbAPI;
 
+import java.util.Objects;
+
 import dbAPI.Constraint;
 import dbAPI.ConstraintsEnum;
 import dbAPI.DatabaseDataType;
 import dbAPI.IColumn;
 
 /**Represents a column in a database table*/
-public class Column implements IColumn {
+public class Column implements IColumn, Cloneable {
 	/**This column's name as in the database*/
 	protected String name;
 	/**This column's index as in the database*/
@@ -38,24 +40,24 @@ public class Column implements IColumn {
 		this.constraints = new Constraint[constraints.length];
 		for (int i = 0; i < constraints.length; i++) {
 			Constraint c = constraints[i];
-			this.constraints[i] = new Constraint(c.getType(), this).setName(c.getName()).setInfo(c.getInfo());
+			this.constraints[i] = c;
 		}
 	}
 	
-	/**Initialize this column with a name, index, type of data, and an array of constraints
-	 * @param name The name of the column as in the database
-	 * @param index The index of the column as in the database
-	 * @param type The database data type of the column
-	 * @param constraints An array of constraints for this column
-	 */
-	public Column(String name, int index, DatabaseDataType type, ConstraintsEnum ... constraints) {
-		this(name, index, type);
-		this.constraints = new Constraint[constraints.length];
-		int i = 0;
-		for (ConstraintsEnum c : constraints) {
-			this.constraints[i++] = new Constraint(c, this);
-		}
-	} 
+//	/**Initialize this column with a name, index, type of data, and an array of constraints
+//	 * @param name The name of the column as in the database
+//	 * @param index The index of the column as in the database
+//	 * @param type The database data type of the column
+//	 * @param constraints An array of constraints for this column
+//	 */
+//	public Column(String name, int index, DatabaseDataType type, ConstraintsEnum ... constraints) {
+//		this(name, index, type);
+//		this.constraints = new Constraint[constraints.length];
+//		int i = 0;
+//		for (ConstraintsEnum c : constraints) {
+//			this.constraints[i++] = new Constraint(c);
+//		}
+//	} 
 
 	@Override
 	public Constraint[] getConstraints() {
@@ -86,5 +88,33 @@ public class Column implements IColumn {
 		}
 		return false;
 	}
+	
+	@Override
+	public Column clone() {
+		Constraint[] c = constraints.clone();
+		return new Column(name, index, type, c);
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) { return true; }
+		if (obj == null || getClass() != obj.getClass()) { return false; }
+		Column col = (Column)obj;
+		if (name != col.name || index != col.index || type != col.type
+				|| constraints.length != col.constraints.length) { return false; }
+		for (int i = 0; i < constraints.length; i++) {
+			if (!constraints[i].equals(col.constraints[i])) { return false; }
+		}
+		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		Object[] arr = new Object[constraints.length + 3];
+		arr[0] = name; arr[1] = index; arr[2] = type;
+		for(int i = 0; i < constraints.length; i++) {
+			arr[i + 3] = constraints[i];
+		}
+		return Objects.hash(arr);
+	}
 }

@@ -1,7 +1,7 @@
 package dbAPI;
 
 /**An interface that represents a database*/
-public interface IDatabase extends Iterable<ITable>{
+public interface IDatabase extends Iterable<ITable>, Cloneable{
 	/**Return all the tables
      * @return an array of all the tables
      */
@@ -120,4 +120,6 @@ public interface IDatabase extends Iterable<ITable>{
 	
 	/**Close the database*/
 	public void close();
+	
+	public IDatabase clone();
 }

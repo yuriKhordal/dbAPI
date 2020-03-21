@@ -1,7 +1,7 @@
 package dbAPI;
 
 /**An interface that represents a table in a database*/
-public interface ITable extends Iterable<IRow>{
+public interface ITable extends Iterable<IRow>, Cloneable{
 	/**Get this table's name in the database
 	 * @return The name of the table as in the database
 	 */
@@ -29,6 +29,16 @@ public interface ITable extends Iterable<IRow>{
 	 */
 	public int getColumnCount();
 	
+	/**Get the primary key of this table
+	 * @return The primary key of this table
+	 */
+	public PrimaryKeyConstraint getPrimaryKey();
+	
+	/**Get the indices of this table
+	 * @return The indices of this table
+	 */
+	public IndexConstraint[] getIndices();
+	
 	/**Get a row at a specified index
 	 * @param index The index of the row
 	 * @return The row at the given index
@@ -36,11 +46,10 @@ public interface ITable extends Iterable<IRow>{
 	public IRow getRow(int index);
 	
 	/**Search for a row by a specified key
-	 * @param keyCol The column of the primary key
-	 * @param keyValue The value of the primary key
+	 * @param key - The values of the key
 	 * @return A row with the given key
 	 */
-	public IRow getRow(final IColumn keyCol, final DatabaseValue keyValue);
+	public IRow getRow(final IPrimaryKey key);
 	
 	// ---- database operations ----
 	
@@ -93,4 +102,11 @@ public interface ITable extends Iterable<IRow>{
 	 * @param whereCondition The condition in sql format(without 'WHERE')
 	 */
 	public void delete(String whereCondition);
+	
+	public ITable clone();
+	
+	/**Equals for {@link ITable}
+	 * @see Object#equals(Object)
+	 */
+	public boolean equals(ITable table);
 }

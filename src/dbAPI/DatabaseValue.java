@@ -1,9 +1,10 @@
 package dbAPI;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**Represents a value and a type in a database*/
-public class DatabaseValue{
+public class DatabaseValue implements Cloneable{
 	/**The value in {@link Object} form*/
 	public Object Value;
 	/**The data type of the value*/
@@ -84,6 +85,24 @@ public class DatabaseValue{
 	 */
 	public String getString(){
 		return (String)convertTo(String.class);
+	}
+	
+	@Override
+	protected DatabaseValue clone() {
+		return new DatabaseValue(Value, type);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {return true;}
+		if (obj == null || getClass() != obj.getClass()) {return false;}
+		DatabaseValue value = (DatabaseValue)obj;
+		return this.type == value.type && this.Value.equals(value.Value);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(Value, type);
 	}
 
 	@Override

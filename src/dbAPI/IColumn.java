@@ -1,7 +1,7 @@
 package dbAPI;
 
 /**An interface that represents a column in a database table*/
-public interface IColumn{
+public interface IColumn extends Cloneable{
 	/**Get the index of this column
 	 * @return The index of this column
 	 */
@@ -27,4 +27,6 @@ public interface IColumn{
 	 * @return True if this column has the given constraint, otherwise False
 	 */
 	public boolean hasConstraint(ConstraintsEnum constraint);
+	
+	public IColumn clone();
 }

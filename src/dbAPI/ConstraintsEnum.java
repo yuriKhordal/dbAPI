@@ -15,7 +15,7 @@ public enum ConstraintsEnum{
 	/**Don't allow null values*/
 	NOT_NULL,
 	/**UNIQUE and NOT_NULL, used to uniquely identify a row in a table*/
-	PRIMERY_KEY,
+	PRIMARY_KEY,
 	/**Ensures that the value doesn't exist already*/
 	UNIQUE
 }
