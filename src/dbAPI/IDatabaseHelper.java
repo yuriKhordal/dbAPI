@@ -4,7 +4,7 @@ package dbAPI;
  * It's supposed to link between a specific database type and it's API, and this generic API <br>
  * Should be implemented for each database type
  */
-public interface IDatabaseHelper{
+public interface IDatabaseHelper extends Cloneable{
 	/**A value to be returned by {@link #getType()} if the type isn't one of the constants*/
 	public static final int OTHER = 0;
 	/**A value to be returned by {@link #getType()} when it's a MySQL database*/
@@ -137,4 +137,6 @@ public interface IDatabaseHelper{
 	
 	/**Close the database*/
 	public void close(); 
+	
+	public IDatabaseHelper clone();
 }

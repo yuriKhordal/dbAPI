@@ -1,7 +1,7 @@
 package dbAPI;
 
-/**An interface that represents a row in a database*/
-public interface IRow extends Iterable<DatabaseCell>{
+/**An interface that represents a row in a database or a collection of cells*/
+public interface IRow extends Iterable<DatabaseCell>, Cloneable{
 	/**Get all the columns of the row
 	 * @return An array of all the columns in the row
 	 */
@@ -54,6 +54,23 @@ public interface IRow extends Iterable<DatabaseCell>{
 	 */
 	public DatabaseCell[] getCells();
 	
+	/**Get the number of cells in the row
+	 * @return The number of cells
+	 */
+	public int getCellsCount();
+	
+	/**Get the primary key of the row
+	 * @return A primary key object, if the row has no key, return null
+	 */
+	public IPrimaryKey getPrimaryKey();
+	
+	/**Check whether the row has a primary key, rows that aren't
+	 * part of a table, like a cell collection or a select query
+	 * result
+	 * @return True if the row has a primary key
+	 */
+	public boolean hasPrimaryKey();
+	
 	/**Set a value at a specified column index
 	 * @param index The index in the database
 	 * @param value The value to set the cell to
@@ -76,4 +93,24 @@ public interface IRow extends Iterable<DatabaseCell>{
 	 * @return An array of all the values
 	 */
 	public DatabaseValue[] getValues();
+	
+	/**Get the value at a given index
+	 * @param index The index of the value
+	 * @return The value at the given index
+	 */
+	public DatabaseValue getValue(int index);
+	
+	/**Get the value at a given column
+	 * @param column The column of the value
+	 * @return The value at the given column
+	 */
+	public DatabaseValue getValue(IColumn column);
+	
+	/**Get the value at a given column
+	 * @param column The column of the value
+	 * @return The value at the given column
+	 */
+	public DatabaseValue getValue(String column);
+	
+	public IRow clone();
 }

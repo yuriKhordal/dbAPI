@@ -1,52 +1,25 @@
 package dbAPI;
 
+import java.util.Objects;
+
 /**Represents a single column constraint in a table, immutable*/
-public class Constraint{
-	/**This constraint's name in the database, optional*/
+public abstract class Constraint{
+	/**The name of the constraint(optional)*/
 	protected String name;
 	/**This constraint's type*/
 	protected ConstraintsEnum type;
-	/**Text for the CHECK, DEFAULT, FOREIGN_KEY constraints*/
-	protected String info;
-	/**This constraint's column*/
-	protected IColumn target;
 
-	/**Initializes this constraint with a type and target column
+	/**Initializes this constraint with a type
 	 * @param type The type of the constraint
-	 * @param target The column to which the constraint is attached
 	 */
-	public Constraint(ConstraintsEnum type, IColumn target){
+	public Constraint(ConstraintsEnum type){
 		this.type = type;
-		this.target = target;
-	}
-
-	/**Set this constraint's name
-	 * @param name The name of the constraint as in the database
-	 * @return A new constraint
-	 */
-	public Constraint setName(String name){
-		Constraint c = new Constraint(this.type, this.target);
-		c.info = this.info;
-		c.name = name;
-		return c;
+		this.name = null;
 	}
 	
-	/**Set a text for CHECK, DEFAULT, FOREIGN_KEY constraints
-	 * @param info The info text for this constraint
-	 * @return A new constraint
-	 */
-	public Constraint setInfo(String info){
-		Constraint c = new Constraint(this.type, this.target);
-		c.name = this.name;
-		c.info = info;
-		return c;
-	}
-
-	/**Get this constraint's name
-	 * @return The name of the constraint as in the database, null if no name
-	 */
-	public String getName(){
-		return this.name;
+	public Constraint setName(String name) {
+		this.name = name;
+		return this;
 	}
 
 	/**Get this constraint's type
@@ -55,11 +28,29 @@ public class Constraint{
 	public ConstraintsEnum getType(){
 		return this.type;
 	}
-
-	/**Get this constraint's info
-	 * @return A string of text for the CHECK, DEFAULT, FOREIGN_KEY constraints, null if no info
+	
+	/**Get the name of the constraint
+	 * @return The name
 	 */
-	public String getInfo(){
-		return this.info;
+	public String getName() {
+		return name;
+	}
+	
+	/**Get the SQL representation of the constraint
+	 * @return The string representation of the constraint
+	 */
+	public abstract String getSqlString();
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) { return true; }
+		if (obj == null || getClass() != obj.getClass()) { return false; }
+		Constraint con = (Constraint)obj;
+		return name == con.name && type == con.type;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, type);
 	}
 }

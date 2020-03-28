@@ -24,4 +24,7 @@ public interface IDatabaseReader extends Iterable<IRow>, Iterator<IRow> {
 	 * @return The next row
 	 */
 	public IRow next();
+	
+	/**Skips to the next row without returning it*/
+	public void skip();
 }

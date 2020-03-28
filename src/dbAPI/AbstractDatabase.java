@@ -163,6 +163,8 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
 	public void close(){
         helper.close();
     }
+	
+	public abstract AbstractDatabase clone();
 
     // ---- Iterable implementation ----
 
