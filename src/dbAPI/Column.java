@@ -61,7 +61,7 @@ public class Column implements IColumn, Cloneable {
 
 	@Override
 	public Constraint[] getConstraints() {
-		return constraints.clone();
+		return constraints;
 	}
 
 	@Override

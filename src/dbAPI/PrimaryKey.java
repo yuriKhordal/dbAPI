@@ -90,7 +90,7 @@ public class PrimaryKey implements IPrimaryKey{
 	public PrimaryKey clone() {
 		DatabaseCell[] cells = new DatabaseCell[this.cells.length];
 		for (int i = 0; i < cells.length; i++) {
-			cells[i] = new DatabaseCell(this.cells[i].column, (DatabaseValue)this.cells[i].Value.clone());
+			cells[i] = new DatabaseCell(this.cells[i].column.clone(), (DatabaseValue)this.cells[i].Value.clone());
 		}
 		return new PrimaryKey(cells);
 	}

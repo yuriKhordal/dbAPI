@@ -14,11 +14,12 @@ public class Row implements IRow, Iterable<DatabaseCell>, Cloneable {
 	 * @param cells The cells of the row
 	 */
 	public Row(final DatabaseCell... cells) {
-		this.cells = cells.clone();
+		this.cells = new DatabaseCell[cells.length];
 		ArrayList<DatabaseCell> keys = new ArrayList<DatabaseCell>(cells.length);
-		for (DatabaseCell cell : cells) {
-			if (cell.column.hasConstraint(ConstraintsEnum.PRIMARY_KEY)) {
-				keys.add(cell);
+		for (int i = 0; i < cells.length; i++) {
+			this.cells[i] = cells[i].clone();
+			if (cells[i].column.hasConstraint(ConstraintsEnum.PRIMARY_KEY)) {
+				keys.add(cells[i]);
 			}
 		}
 		

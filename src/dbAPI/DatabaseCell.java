@@ -43,7 +43,7 @@ public class DatabaseCell implements Cloneable{
     
     @Override
     protected DatabaseCell clone() {
-    	return new DatabaseCell(column, (DatabaseValue)Value.clone());
+    	return new DatabaseCell(column.clone(), (DatabaseValue)Value.clone());
     }
     
     @Override

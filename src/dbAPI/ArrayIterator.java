@@ -13,7 +13,7 @@ public final class ArrayIterator<T> implements Iterator<T> {
      * @param array The array to iterate over
      */
     public ArrayIterator(T[] array){
-        this.array = array.clone();
+        this.array = array;
         i = 0;
     }
 
