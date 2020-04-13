@@ -2,11 +2,6 @@ package dbAPI;
 
 import java.util.Objects;
 
-import dbAPI.Constraint;
-import dbAPI.ConstraintsEnum;
-import dbAPI.DatabaseDataType;
-import dbAPI.IColumn;
-
 /**Represents a column in a database table*/
 public class Column implements IColumn, Cloneable {
 	/**This column's name as in the database*/
@@ -81,6 +76,7 @@ public class Column implements IColumn, Cloneable {
 
 	@Override
 	public boolean hasConstraint(ConstraintsEnum constraint) {
+		if (constraints == null) { return false; }
 		for (Constraint c : constraints) {
 			if (c.getType() == constraint) {
 				return true;

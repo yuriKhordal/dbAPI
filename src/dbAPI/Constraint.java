@@ -2,8 +2,19 @@ package dbAPI;
 
 import java.util.Objects;
 
+import dbAPI.PrimaryKeyConstraint.BasicPrimaryKeyConstraint;
+
 /**Represents a single column constraint in a table, immutable*/
 public abstract class Constraint{
+	/**A nameless auto increment constraint*/
+	public static final Constraint AUTO_INCREMENT = new AutoIncrementConstraint();
+	/**A nameless basic primary key constraint*/
+	public static final BasicPrimaryKeyConstraint BASIC_PRIMARY_KEY_CONSTRAINT = new BasicPrimaryKeyConstraint(); 
+	/**A nameless not null constraint*/
+	public static final Constraint NOT_NULL = new NotNullConstraint();
+	/**A nameless unique constraint*/
+	public static final Constraint UNIQUE = new UniqueConstraint();
+	
 	/**The name of the constraint(optional)*/
 	protected String name;
 	/**This constraint's type*/

@@ -39,6 +39,11 @@ public interface ITable extends Iterable<IRow>, Cloneable{
 	 */
 	public IndexConstraint[] getIndices();
 	
+	/**Get the table level check constraints
+	 * @return The table level check constraints
+	 */
+	public CheckConstraint[] getTableChecks();
+	
 	/**Get a row at a specified index
 	 * @param index The index of the row
 	 * @return The row at the given index

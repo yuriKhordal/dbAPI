@@ -10,17 +10,21 @@ public abstract class AbstractTable implements ITable, Iterable<IRow> {
     protected PrimaryKeyConstraint pk;
     /**The indices in the table*/
     protected IndexConstraint[] indices;
+    /**The table level check constraints*/
+    protected CheckConstraint[] checks;
 
     /**Initialize this table with a name, primary key/s, indices, and columns
      * @param name The name of the table
      * @param pk The primary key/s of this table
      * @param indices The indices of this table
+     * @param checkConstraints The table level check constraints
      * @param columns An array of columns to put in this table, excluding the primary key/s
      */
-    public AbstractTable(String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, IColumn... columns) {
+    public AbstractTable(String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, CheckConstraint[] checkConstraints, IColumn... columns) {
     	this.name = name;
     	this.pk = pk;
     	this.indices = indices;
+    	this.checks = checkConstraints;
     	this.columns = new IColumn[columns.length + pk.keyColumns.length];
     	for(IColumn col : pk.keyColumns) {
     		this.columns[col.getIndex()] = col;
@@ -36,7 +40,7 @@ public abstract class AbstractTable implements ITable, Iterable<IRow> {
      * @param columns An array of columns to put in this table, excluding the primary key/s
      */
     public AbstractTable(String name, PrimaryKeyConstraint pk, IColumn... columns) {
-    	this(name, pk, null, columns);
+    	this(name, pk, null, null, columns);
     }
 
     // ---- ITable implementation ----
@@ -77,6 +81,11 @@ public abstract class AbstractTable implements ITable, Iterable<IRow> {
 	
 	public IndexConstraint[] getIndices() {
 		return indices;
+	}
+
+	@Override
+	public CheckConstraint[] getTableChecks() {
+		return checks;
 	}
 	
 	public abstract AbstractTable clone();

@@ -109,5 +109,34 @@ public class PrimaryKeyConstraint extends Constraint {
 			arr[i + 1] = keyColumns[i];
 		}
 		return Objects.hash(arr);
+	} 
+	
+	/**Represents a basic primary key constraint<br>
+	 * <br>
+	 * This constraint is the basic constraint inside
+	 * the column object as opposed to {@link PrimaryKeyConstraint}
+	 * which is the more general constraint for the table
+	 * with all the columns inside it
+	 */
+	public static class BasicPrimaryKeyConstraint extends Constraint {
+		/**Initialize a new basic primary key constraint*/
+		public BasicPrimaryKeyConstraint() {
+			super(ConstraintsEnum.PRIMARY_KEY);
+		}
+
+		/**{@inheritDoc}<br>
+		 * <br>
+		 * Return as <code>"PRIMARY KEY"</code>
+		 */
+		public String getSqlString() {
+			return "PRIMARY KEY";
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj) { return true; }
+			if( obj == null || getClass() != obj.getClass()) { return false; }
+			return this.name == ((BasicPrimaryKeyConstraint)obj).name;
+		}
 	}
 }

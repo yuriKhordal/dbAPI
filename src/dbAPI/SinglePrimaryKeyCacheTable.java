@@ -5,13 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
 
-import dbAPI.DatabaseCell;
-import dbAPI.IColumn;
-import dbAPI.IDatabaseHelper;
-import dbAPI.IDatabaseReader;
-import dbAPI.IRow;
-import dbAPI.ITable;
-
 /**Represents a database table that saves the data in memory
  * @param <T> The type of rows in the table
  */
@@ -27,10 +20,11 @@ public class SinglePrimaryKeyCacheTable<T extends IRow> extends OnlineTable {
      * @param name The name of the table
      * @param pk The primary key columns of this table
      * @param indices The indices of this table
+     * @param checkConstraints The table level check constraints
 	 * @param columns An array of columns to put in this table, excluding the primary key/s
 	 */
-	protected SinglePrimaryKeyCacheTable(String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, IColumn... columns) {
-		super(name, pk, indices, columns);
+	protected SinglePrimaryKeyCacheTable(String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, CheckConstraint[] checkConstraints, IColumn... columns) {
+		super(name, pk, indices, checkConstraints, columns);
 		rows = new ArrayList<T>();
 		rowsMap = new HashMap<Object, T>();
 	}
@@ -42,10 +36,11 @@ public class SinglePrimaryKeyCacheTable<T extends IRow> extends OnlineTable {
      * @param name The name of the table
      * @param pk The primary key columns of this table
      * @param indices The indices of this table
+     * @param checkConstraints The table level check constraints
 	 * @param columns An array of columns to put in this table, excluding the primary key/s
 	 */
-	public SinglePrimaryKeyCacheTable(IDatabaseHelper helper, IRowConverter<T> converter, String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, IColumn... columns) {
-		this(name, pk, indices, columns);
+	public SinglePrimaryKeyCacheTable(IDatabaseHelper helper, IRowConverter<T> converter, String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, CheckConstraint[] checkConstraints, IColumn... columns) {
+		this(name, pk, indices, checkConstraints, columns);
 		this.helper = helper;
 		this.converter = converter;
 		
@@ -111,12 +106,12 @@ public class SinglePrimaryKeyCacheTable<T extends IRow> extends OnlineTable {
 	// ---- AbstractTable implementation ----
 
 	@Override
-	public IRow getRow(int index) {
+	public T getRow(int index) {
 		return rows.get(index);
 	}
 	
 	@Override
-	public IRow getRow(IPrimaryKey key) {
+	public T getRow(IPrimaryKey key) {
 		return rowsMap.get(key.getValue().Value);
 	}
 

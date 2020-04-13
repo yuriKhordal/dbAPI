@@ -12,10 +12,11 @@ public class OnlineTable extends AbstractTable {
      * @param name The name of the table
      * @param pk The primary key columns of this table
      * @param indices The indices of this table
+     * @param checkConstraints The table level check constraints
 	 * @param columns An array of columns to put in this table, excluding the primary key/s
 	 */
-	protected OnlineTable(String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, IColumn[] columns) {
-		super(name, pk, indices, columns);
+	protected OnlineTable(String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, CheckConstraint[] checkConstraints, IColumn[] columns) {
+		super(name, pk, indices, checkConstraints, columns);
 	}
 
 	/**Initialize this table with a helper, a converting method, a name,<br>
@@ -24,10 +25,11 @@ public class OnlineTable extends AbstractTable {
      * @param name The name of the table
      * @param pk The primary key columns of this table
      * @param indices The indices of this table
+     * @param checkConstraints The table level check constraints
 	 * @param columns An array of columns to put in this table, excluding the primary key/s
 	 */
-	public OnlineTable(IDatabaseHelper helper, String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, IColumn... columns) {
-		this(name, pk, indices, columns);
+	public OnlineTable(IDatabaseHelper helper, String name, PrimaryKeyConstraint pk, IndexConstraint[] indices, CheckConstraint[] checkConstraints, IColumn... columns) {
+		this(name, pk, indices, checkConstraints, columns);
 		this.helper = helper;
 	}
 	
