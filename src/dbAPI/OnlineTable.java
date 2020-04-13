@@ -56,7 +56,7 @@ public class OnlineTable extends AbstractTable {
 
 	@Override
 	public void insert(IRow newRow) {
-		String[] columns = new String[newRow.getCells().length];
+		/*String[] columns = new String[newRow.getCells().length];
 		String[] values = new String[newRow.getCells().length];
 		
 		for (int i = 0; i < newRow.getCellsCount(); i++) {
@@ -64,7 +64,8 @@ public class OnlineTable extends AbstractTable {
 			values[i] = helper.DatabaseValueToString(newRow.getValue(i));
 		}
 		
-		helper.insert(name, columns, values);
+		helper.insert(name, columns, values);*/
+		helper.insert(this, columns, newRow.getValues());
 	}
 
 	@Override
@@ -76,52 +77,54 @@ public class OnlineTable extends AbstractTable {
 
 	@Override
 	public IDatabaseReader select(IColumn[] columns) {
-		String[] columnstring = new String[columns.length];
+		/*String[] columnstring = new String[columns.length];
 		for(IColumn c : columns) {
 			columnstring[c.getIndex()] = c.getName();
 		}
-		return helper.select(name, columnstring);
+		return helper.select(name, columnstring);*/
+		return helper.select(this, columns);
 	}
 
 	@Override
 	public IDatabaseReader select(IColumn[] columns, String whereCondition) {
-		String[] columnstring = new String[columns.length];
+		/*String[] columnstring = new String[columns.length];
 		for(IColumn c : columns) {
 			columnstring[c.getIndex()] = c.getName();
 		}
-		return helper.select(name, columnstring, whereCondition);
+		return helper.select(name, columnstring, whereCondition);*/
+		return helper.select(this, columns, whereCondition);
 	}
 
 	@Override
 	public IDatabaseReader selectAll() {
-		return helper.selectAll(name);
+		return helper.selectAll(this);
 	}
 
 	@Override
 	public IDatabaseReader selectAll(String whereCondition) {
-		return helper.selectAll(name, whereCondition);
+		return helper.selectAll(this, whereCondition);
 	}
 
 	@Override
 	public void update(IRow columnValueList) {
-		helper.update(name, columnValueList);
+		helper.update(this, columnValueList);
 	}
 
 	@Override
 	public void update(IRow columnValueList, String whereCondition) {
-		helper.update(name, columnValueList, whereCondition);
+		helper.update(this, columnValueList, whereCondition);
 	}
 
 	@Override
 	public void delete(String whereCondition) {
-		helper.delete(name, whereCondition);
+		helper.delete(this, whereCondition);
 	}
 	
 	// ---- Object overrides ----
 
 	@Override
 	public OnlineTable clone() {
-		OnlineTable cloned = new OnlineTable(name, pk, indices, columns);
+		OnlineTable cloned = new OnlineTable(name, pk, indices, checks, columns);
 		
 		cloned.helper = helper;
 		

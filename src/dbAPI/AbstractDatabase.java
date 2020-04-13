@@ -52,17 +52,25 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
 
 	public void create(final ITable table){
         tables.add(table);
-        helper.create(table.getName(), table.getColumns());
+        helper.create(table);
     }
 
 	public void insert(final ITable table, final IRow row){
-        DatabaseCell[] cells = row.getCells();
+        /*DatabaseCell[] cells = row.getCells();
         String[][] cells_string = new String[2][cells.length];
         for(int i = 0; i < cells.length; i++){
             cells_string[0][i] = cells[i].getColumn().getName();
             cells_string[1][i] = cells[i].Value.toString();
         }
-        helper.insert(table.getName(), cells_string[0], cells_string[1]);
+        helper.insert(table.getName(), cells_string[0], cells_string[1]);*/
+		
+		IColumn[] columns = new IColumn[row.getCellsCount()];
+		DatabaseValue[] values = new DatabaseValue[columns.length];
+		for (int i = 0; i < columns.length; i++) {
+			columns[i] = row.getColumn(i);
+			values[i] = row.getValue(i);
+		}
+		helper.insert(table, columns, values);
     }
 
 	public void insert(final ITable table, final IRow[] rows){
@@ -72,33 +80,37 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
     }
 
 	public void update(final ITable table, final IRow row){
-        helper.update(table.getName(), row);
+        helper.update(table, row);
     }
 	
 	public void update(final ITable table, final IRow row, String whereCondition){
-        helper.update(table.getName(), row, whereCondition);
+        helper.update(table, row, whereCondition);
     }
 
 	public IDatabaseReader select(final ITable table, final IColumn[] columns){
-        String[] col = new String[columns.length];
+        /*String[] col = new String[columns.length];
         int i = 0;
         for(IColumn c : columns){
             col[i++] = c.getName();
         }
-        return helper.select(table.getName(), col);
+        return helper.select(table.getName(), col);*/
+		
+		return helper.select(table, columns);
     }
 	
 	public IDatabaseReader select(final ITable table, final IColumn[] columns, String whereCondition){
-        String[] col = new String[columns.length];
+        /*String[] col = new String[columns.length];
         int i = 0;
         for(IColumn c : columns){
             col[i++] = c.getName();
         }
-        return helper.select(table.getName(), col, whereCondition);
+        return helper.select(table.getName(), col, whereCondition);*/
+		
+		return helper.select(table, columns, whereCondition);
     }
 	
 	public IDatabaseReader select(final ITable[] tables, final IColumn[] columns){
-        String[] col = new String[columns.length];
+        /*String[] col = new String[columns.length];
         String[] tab = new String[tables.length];
         int i = 0;
         for(IColumn c : columns){
@@ -108,11 +120,13 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
         for(ITable t : tables){
             tab[i++] = t.getName();
         }
-        return helper.select(tab, col);
+        return helper.select(tab, col);*/
+		
+		return helper.select(tables, columns);
     }
 	
 	public IDatabaseReader select(final ITable[] tables, final IColumn[] columns, String whereCondition){
-        String[] col = new String[columns.length];
+        /*String[] col = new String[columns.length];
         String[] tab = new String[tables.length];
         int i = 0;
         for(IColumn c : columns){
@@ -122,41 +136,47 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
         for(ITable t : tables){
             tab[i++] = t.getName();
         }
-        return helper.select(tab, col, whereCondition);
+        return helper.select(tab, col, whereCondition);*/
+		
+		return helper.select(tables, columns, whereCondition);
     }
 	
 	public IDatabaseReader selectAll(final ITable table){
-        return helper.selectAll(table.getName());
+        return helper.selectAll(table);
     }
 	
 	public IDatabaseReader selectAll(final ITable table, String whereCondition){
-        return helper.selectAll(table.getName(), whereCondition);
+        return helper.selectAll(table, whereCondition);
     }
 	
 	public IDatabaseReader selectAll(final ITable[] tables){
-        String[] tab = new String[tables.length];
+        /*String[] tab = new String[tables.length];
         int i = 0;
         for(ITable t : tables){
             tab[i++] = t.getName();
         }
-        return helper.selectAll(tab);
+        return helper.selectAll(tab);*/
+		
+		return helper.selectAll(tables);
     }
 	
 	public IDatabaseReader selectAll(final ITable[] tables, String whereCondition){
-        String[] tab = new String[tables.length];
+        /*String[] tab = new String[tables.length];
         int i = 0;
         for(ITable t : tables){
             tab[i++] = t.getName();
         }
-        return helper.selectAll(tab, whereCondition);
+        return helper.selectAll(tab, whereCondition);*/
+		
+		return helper.selectAll(tables, whereCondition);
     }
 
 	public void delete(final ITable table, String whereCondition){
-        helper.delete(table.getName(), whereCondition);
+        helper.delete(table, whereCondition);
     }
 
 	public void drop(final ITable table){
-        helper.drop(table.getName());
+        helper.drop(table);
         this.tables.remove(table);
     }
 

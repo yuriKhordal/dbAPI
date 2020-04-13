@@ -43,7 +43,7 @@ public class CacheTable<T extends IRow> extends OnlineTable {
 		this.helper = helper;
 		this.converter = converter;
 		
-		IDatabaseReader reader = helper.selectAll(name);
+		IDatabaseReader reader = helper.selectAll(this);
 		for (IRow row : reader) {
 			addFromIRow(row);
 		}
@@ -171,7 +171,7 @@ public class CacheTable<T extends IRow> extends OnlineTable {
 	
 	@Override
 	public CacheTable<T> clone() {
-		CacheTable<T> cloned = new CacheTable<T>(name, pk, indices, columns);
+		CacheTable<T> cloned = new CacheTable<T>(name, pk, indices, checks, columns);
 		
 		cloned.converter = this.converter;
 		cloned.helper = this.helper.clone();

@@ -44,7 +44,7 @@ public class SinglePrimaryKeyCacheTable<T extends IRow> extends OnlineTable {
 		this.helper = helper;
 		this.converter = converter;
 		
-		IDatabaseReader reader = helper.selectAll(name);
+		IDatabaseReader reader = helper.selectAll(this);
 		for (IRow row : reader) {
 			addFromIRow(row);
 		}
@@ -160,7 +160,7 @@ public class SinglePrimaryKeyCacheTable<T extends IRow> extends OnlineTable {
 	
 	@Override
 	public SinglePrimaryKeyCacheTable<T> clone() {
-		SinglePrimaryKeyCacheTable<T> cloned = new SinglePrimaryKeyCacheTable<T>(name, pk, indices, columns);
+		SinglePrimaryKeyCacheTable<T> cloned = new SinglePrimaryKeyCacheTable<T>(name, pk, indices, checks, columns);
 		
 		cloned.converter = this.converter;
 		cloned.helper = this.helper.clone();

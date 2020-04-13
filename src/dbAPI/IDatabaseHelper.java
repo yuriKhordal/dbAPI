@@ -27,29 +27,28 @@ public interface IDatabaseHelper extends Cloneable{
 	
 	/**Create the specified table in the database
 	 * @param table The table to create
-	 * @param columns The columns of the table
 	 */
-	public void create(String table, IColumn[] columns);
+	public void create(final ITable table);
 	
 	/**Insert specified values in specified columns inside a specified table
 	 * @param table The name of the table in the database
 	 * @param columns The columns in which to insert the values
 	 * @param values The values which to insert
 	 */
-	public void insert(String table, final String[] columns, final String[] values);
+	public void insert(final ITable table, final IColumn[] columns, final DatabaseValue[] values);
 	
 	/**Update a specified table with values from a specified row
 	 * @param table The name of the table in the database
 	 * @param row The row to take values from
 	 */
-	public void update(String table, final IRow row);
+	public void update(final ITable table, final IRow row);
 	
 	/**Update a specified table with values from a specified row with a condition
 	 * @param table The name of the table in the database
 	 * @param row The row to take values from
 	 * @param whereCondition the condition in sql format(without 'WHERE')
 	 */
-	public void update(String table, final IRow row, String whereCondition);
+	public void update(final ITable table, final IRow row, String whereCondition);
 	
 	/**Execute an sql statement
 	 * @param sql The sql statement
@@ -61,7 +60,7 @@ public interface IDatabaseHelper extends Cloneable{
 	 * @param columns The columns which to select
 	 * @return A reader with the selects results
 	 */
-	public IDatabaseReader select(String table, String[] columns);
+	public IDatabaseReader select(final ITable table, final IColumn[] columns);
 	
 	/**Select rows in a specified table and read the specified columns where the condition is met
 	 * @param table The name of the table in the database
@@ -69,14 +68,14 @@ public interface IDatabaseHelper extends Cloneable{
 	 * @param whereCondition The condition in sql format(without 'WHERE')
 	 * @return A reader with the selects results
 	 */
-	public IDatabaseReader select(String table, String[] columns, String whereCondition);
+	public IDatabaseReader select(final ITable table, final IColumn[] columns, String whereCondition);
 	
 	/**Select all the rows from specified tables and read the specified columns
 	 * @param tables The name of the tables in the database
 	 * @param columns The columns which to select
 	 * @return A reader with the selects results
 	 */
-	public IDatabaseReader select(String[] tables, String[] columns);
+	public IDatabaseReader select(final ITable[] tables, final IColumn[] columns);
 	
 	/**Select rows in specified tables and read the specified columns where the condition is met
 	 * @param tables The name of the tables in the database
@@ -84,33 +83,33 @@ public interface IDatabaseHelper extends Cloneable{
 	 * @param whereCondition The condition in sql format(without 'WHERE')
 	 * @return A reader with the selects results
 	 */
-	public IDatabaseReader select(String[] tables, String[] columns, String whereCondition);
+	public IDatabaseReader select(final ITable[] tables, final IColumn[] columns, String whereCondition);
 	
 	/**Select everything from a specified table
 	 * @param table The name of the table in the database
 	 * @return A reader with the selects results
 	 */
-	public IDatabaseReader selectAll(String table);
+	public IDatabaseReader selectAll(final ITable table);
 	
 	/**Select everything from the specified table where the condition is met
 	 * @param table The name of the table in the database
 	 * @param whereCondition The condition in sql format(without 'WHERE')
 	 * @return A reader with the selects results
 	 */
-	public IDatabaseReader selectAll(String table, String whereCondition);
+	public IDatabaseReader selectAll(final ITable table, String whereCondition);
 	
 	/**Select everything from the specified tables
 	 * @param tables The name of the tables in the database
 	 * @return A reader with the selects results
 	 */
-	public IDatabaseReader selectAll(String[] tables);
+	public IDatabaseReader selectAll(final ITable[] tables);
 	
 	/**Select everything from the specified tables where the condition is met
 	 * @param tables The name of the tables in the database
 	 * @param whereCondition The condition in sql format(without 'WHERE')
 	 * @return A reader with the selects results
 	 */
-	public IDatabaseReader selectAll(String[] tables, String whereCondition);
+	public IDatabaseReader selectAll(final ITable[] tables, String whereCondition);
 	
 	/**Execute an sql statement and return results in a {@link IDatabaseReader}
 	 * @param sql The sql statement to execute
@@ -128,12 +127,12 @@ public interface IDatabaseHelper extends Cloneable{
 	 * @param table The table from which to delete
 	 * @param whereCondition The condition in sql format(without 'WHERE')
 	 */
-	public void delete(String table, String whereCondition);
+	public void delete(ITable table, String whereCondition);
 	
 	/**Drop the specified table
 	 * @param table The table to drop
 	 */
-	public void drop(String table);
+	public void drop(ITable table);
 	
 	/**Close the database*/
 	public void close(); 
