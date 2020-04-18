@@ -41,11 +41,11 @@ public class DatabaseValue implements Cloneable{
 		}
 	}
 
-	/**Get the value in {@link Boolean} form
-	 * @return The value in {@link Boolean} form. if can't convert, null
+	/**Get the value in boolean form
+	 * @return The value in boolean form. if can't convert, null
 	 */
-	public Boolean getBoolean(){
-		return (Boolean)convertTo(boolean.class);
+	public boolean getBoolean(){
+		return (Boolean)convertTo(Boolean.class);
 	}
 
 	/**Get the value in byte[] form
@@ -62,22 +62,22 @@ public class DatabaseValue implements Cloneable{
 	  	return (LocalDateTime)convertTo(LocalDateTime.class);
 	}
 
-	/**Get the value in {@link Double} form
-	 * @return The value in {@link Double} form. if can't convert, null
+	/**Get the value in double form
+	 * @return The value in Double form. if can't convert, null
 	 */
-	public Double getDouble(){
-		return (Double)convertTo(double.class);
+	public double getDouble(){
+		return (Double)convertTo(Double.class);
 	}
 
 	/*public Enum getEnum(){
 		return convertTo(Enum);
 	}*/
 
-	/**Get the value in {@link Integer} form
-	 * @return The value in {@link Integer} form. if can't convert, null
+	/**Get the value in int form
+	 * @return The value in int form. if can't convert, null
 	 */
-	public Integer getInteger(){
-		return (Integer)convertTo(int.class);
+	public int getInt(){
+		return (Integer)convertTo(Integer.class);
 	}
 
 	/**Get the value in {@link String} form
