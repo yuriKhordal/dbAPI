@@ -53,4 +53,9 @@ public class CheckConstraint extends Constraint {
 	public int hashCode() {
 		return Objects.hash(name, condition);
 	}
+
+	@Override
+	public String toString() {
+		return super.toString().replace(';', ',') + " condition: " + condition + ";";
+	}
 }

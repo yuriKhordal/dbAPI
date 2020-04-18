@@ -110,6 +110,20 @@ public class PrimaryKeyConstraint extends Constraint {
 		}
 		return Objects.hash(arr);
 	} 
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append(super.toString().replace(';', ','));
+		for (int i = 0; i < keyColumns.length; i++){
+			str.append('\n').append(keyColumns[i]);
+			if (i < keyColumns.length - 1){
+				str.append(',');
+			}
+		}
+
+		return str.append(';').toString();
+	}
 	
 	/**Represents a basic primary key constraint<br>
 	 * <br>

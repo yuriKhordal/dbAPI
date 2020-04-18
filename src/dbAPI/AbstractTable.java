@@ -88,5 +88,40 @@ public abstract class AbstractTable implements ITable, Iterable<IRow> {
 		return checks;
 	}
 	
-	public abstract AbstractTable clone();
+    public abstract AbstractTable clone();
+    
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Table: ").append(name).append('\n');
+        str.append(pk);
+        for(int i = 0; i < columns.length; i++){
+            str.append('\n').append(columns[i]);
+            if (i < columns.length - 1){
+                str.append(',');
+            }
+        }
+
+        if (indices != null){
+            str.append(',');
+            for (int i = 0; i < indices.length; i++){
+                str.append('\n').append(indices[i]);
+                if (i < indices.length - 1){
+                    str.append(',');
+                }
+            }
+        }
+
+        if (checks != null){
+            str.append(',');
+            for (int i = 0; i < checks.length; i++){
+                str.append('\n').append(checks[i]);
+                if (i < checks.length - 1){
+                    str.append(',');
+                }
+            }
+        }
+
+        return str.append(';').toString();
+    }
 }

@@ -121,6 +121,22 @@ public class PrimaryKey implements IPrimaryKey{
 	}
 
 	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append("Primary Key:\n");
+		for(int i = 0; i < cells.length; i++){
+			str.append(cells[i]);
+			if (i < cells.length - 1){
+				str.append(',').append('\n');
+			}
+		}
+
+		return str.append(';').toString();
+	}
+
+	// ---- Iterable implimintation ----
+
+	@Override
 	public Iterator<DatabaseCell> iterator() {
 		return new ArrayIterator<DatabaseCell>(cells);
 	}

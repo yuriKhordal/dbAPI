@@ -58,4 +58,9 @@ public class DatabaseCell implements Cloneable{
 		DatabaseCell cell = (DatabaseCell)obj;
 		return this.column.equals(cell.column) && this.Value.equals(cell.Value);
     }
+
+    @Override
+    public String toString() {
+        return "Database Cell: \n" + column + "\n" + Value + ";";
+    }
 }

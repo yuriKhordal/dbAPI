@@ -179,4 +179,16 @@ public class Row implements IRow, Iterable<DatabaseCell>, Cloneable {
 		}
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append("Row:\n").append(pkey);
+		for (DatabaseCell cell : cells){
+			if (cell.column.hasConstraint(ConstraintsEnum.PRIMARY_KEY)){ continue; }
+			str.append(",\n").append(cell);
+		}
+
+		return str.append(';').toString();
+	}
 }

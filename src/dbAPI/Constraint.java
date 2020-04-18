@@ -64,4 +64,9 @@ public abstract class Constraint{
 	public int hashCode() {
 		return Objects.hash(name, type);
 	}
+
+	@Override
+	public String toString() {
+		return "Constraint " + (name == null ? "" : "'" + name + "' ") + "type: " + type + ";";
+	}
 }

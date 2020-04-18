@@ -189,6 +189,11 @@ public class SinglePrimaryKeyCacheTable<T extends IRow> extends OnlineTable {
 		
 		return Objects.hash(arr);
 	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 	
 	// ---- Iterator implementation ----
 

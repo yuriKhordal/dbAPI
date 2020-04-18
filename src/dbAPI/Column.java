@@ -101,11 +101,26 @@ public class Column implements IColumn, Cloneable {
 	
 	@Override
 	public int hashCode() {
-		Object[] arr = new Object[constraints.length + 3];
+		Object[] arr = new Object[(constraints != null ? constraints.length : 0) + 3];
 		arr[0] = name; arr[1] = index; arr[2] = type;
-		for(int i = 0; i < constraints.length; i++) {
-			arr[i + 3] = constraints[i];
+		if (constraints != null){
+			for(int i = 0; i < constraints.length; i++) {
+				arr[i + 3] = constraints[i];
+			}
 		}
 		return Objects.hash(arr);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append("Column '" + name + "', index: " + index + ", type: " + type);
+		if (constraints != null && constraints.length > 0){
+			for (Constraint constraint : constraints){
+				str.append(',').append('\n').append(constraint);
+			}
+		}
+
+		return str.append(';').toString();
 	}
 }

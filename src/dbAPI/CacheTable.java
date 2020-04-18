@@ -186,6 +186,11 @@ public class CacheTable<T extends IRow> extends OnlineTable {
 		
 		return cloned;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 	
 	// ---- Iterator implementation ----
 

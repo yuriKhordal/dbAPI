@@ -64,6 +64,11 @@ public class SingularBasicPrimaryKey extends DatabaseValue implements IBasicPrim
 	public int hashCode() {
 		return super.hashCode();
 	}
+
+	@Override
+	public String toString() {
+		return "Singular Basic Primary Key: type: " + type + "\nValue: " + Value.toString();
+	}
 	
 	// ---- Iterator implementation ----
 

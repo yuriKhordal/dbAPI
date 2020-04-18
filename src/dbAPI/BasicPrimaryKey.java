@@ -70,6 +70,20 @@ public class BasicPrimaryKey implements IBasicPrimaryKey {
 	public int hashCode() {
 		return Objects.hash((Object[])values);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append("Basic Primary Key: ");
+		for (int i = 0; i < values.length;i ++){
+			str.append('\n').append(values[i]);
+			if (i < values.length - 1){
+				str.append(',');
+			}
+		}
+
+		return str.append(';').toString();
+	}
 	
 	// ---- Cloneable implementation
 	

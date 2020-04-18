@@ -186,6 +186,22 @@ public abstract class AbstractDatabase implements IDatabase, Iterable<ITable> {
 	
 	public abstract AbstractDatabase clone();
 
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("Database: \n").append(helper);
+        ITable[] tables = getTables();
+        for (int i = 0; i < tables.length ; i++){
+            ITable table = tables[i];
+            str.append('\n').append(table);
+            if (i < tables.length - 1){
+                str.append(',');
+            }
+        }
+
+        return str.append(';').toString();
+    }
+
     // ---- Iterable implementation ----
 
     public Iterator<ITable> iterator() {

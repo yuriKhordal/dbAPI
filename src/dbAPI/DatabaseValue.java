@@ -107,6 +107,6 @@ public class DatabaseValue implements Cloneable{
 
 	@Override
 	public String toString() {
-		return Value.toString();
+		return "Database Value: type: " + type + "\nValue: " + Value.toString();
 	}
 }

@@ -31,4 +31,9 @@ public class AutoIncrementConstraint extends Constraint {
 		AutoIncrementConstraint auto = (AutoIncrementConstraint)obj;
 		return name == auto.name;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

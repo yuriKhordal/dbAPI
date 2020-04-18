@@ -170,6 +170,15 @@ public class OnlineTable extends AbstractTable {
 		
 		return Objects.hash(arr);
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder str = new StringBuilder();
+		str.append(super.toString());
+		str.insert(str.indexOf("\n"), ",\n" + helper);
+
+		return str.append(';').toString();
+	}
 	
 	// ---- Iterable implementation ----
 

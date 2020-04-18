@@ -63,4 +63,9 @@ public class IndexConstraint extends Constraint {
 	public int hashCode() {
 		return Objects.hash(name, target, unique);
 	}
+
+	@Override
+	public String toString() {
+		return super.toString().replace(';', ',') + (unique ? " unique," : "") + " indices: " + target + ";";
+	}
 }

@@ -22,4 +22,8 @@ public class NotNullConstraint extends Constraint {
 		return this.name == ((NotNullConstraint)obj).name;
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

@@ -120,6 +120,13 @@ public class SingularPrimaryKey extends DatabaseCell implements IPrimaryKey {
 		return column.equals(key.getColumn()) && Value.equals(key.getValue());
 	}
 
+    @Override
+    public String toString() {
+        return "Singular Primary Key: \n" + column + "\n" + Value + ";";
+	}
+	
+	// ---- Iterable implimintation ----
+
 	@Override
 	public Iterator<DatabaseCell> iterator() {
 		return new Iterator<DatabaseCell>() {

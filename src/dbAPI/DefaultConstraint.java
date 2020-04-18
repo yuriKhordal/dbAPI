@@ -49,4 +49,9 @@ public class DefaultConstraint extends Constraint {
 	public int hashCode() {
 		return Objects.hash(name, defaultValue);
 	}
+
+	@Override
+	public String toString() {
+		return super.toString().replace(';', ',') + " default value: " + defaultValue + ";";
+	}
 }

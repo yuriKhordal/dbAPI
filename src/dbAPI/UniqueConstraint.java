@@ -21,4 +21,9 @@ public class UniqueConstraint extends Constraint {
 		if( obj == null || getClass() != obj.getClass()) { return false; }
 		return this.name == ((UniqueConstraint)obj).name;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }
