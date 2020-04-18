@@ -44,7 +44,7 @@ public class SingularPrimaryKey extends DatabaseCell implements IPrimaryKey {
 	
 	@Override
 	public DatabaseCell getCell(int index) throws IndexOutOfBoundsException {
-		if (index != 0) { throw new IndexOutOfBoundsException(index); }
+		if (index != 0) { throw new IndexOutOfBoundsException("No cell at index [" + index + ']'); }
 		return this;
 	}
 
@@ -60,7 +60,7 @@ public class SingularPrimaryKey extends DatabaseCell implements IPrimaryKey {
 	
 	@Override
 	public IColumn getColumn(int index) throws IndexOutOfBoundsException {
-		if (index != 0) { throw new IndexOutOfBoundsException(index); }
+		if (index != 0) { throw new IndexOutOfBoundsException("No column at index [" + index + ']'); }
 		return column;
 	}
 	
@@ -76,7 +76,7 @@ public class SingularPrimaryKey extends DatabaseCell implements IPrimaryKey {
 	
 	@Override
 	public DatabaseValue getValue(int index) throws IndexOutOfBoundsException {
-		if (index != 0) { throw new IndexOutOfBoundsException(index); }
+		if (index != 0) { throw new IndexOutOfBoundsException("No value at index [" + index + ']'); }
 		return Value;
 	}
 

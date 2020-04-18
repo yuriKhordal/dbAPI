@@ -14,10 +14,11 @@ public class Row implements IRow, Iterable<DatabaseCell>, Cloneable {
 	 * @param cells The cells of the row
 	 */
 	public Row(final DatabaseCell... cells) {
-		this.cells = new DatabaseCell[cells.length];
+		//this.cells = new DatabaseCell[cells.length];
+		this.cells = cells;
 		ArrayList<DatabaseCell> keys = new ArrayList<DatabaseCell>(cells.length);
 		for (int i = 0; i < cells.length; i++) {
-			this.cells[i] = cells[i].clone();
+			//this.cells[i] = cells[i].clone();
 			if (cells[i].column.hasConstraint(ConstraintsEnum.PRIMARY_KEY)) {
 				keys.add(cells[i]);
 			}
@@ -63,7 +64,7 @@ public class Row implements IRow, Iterable<DatabaseCell>, Cloneable {
 	 */
 	public int getIndex(final IColumn column) throws IllegalArgumentException {
 		for (int i = 0; i < cells.length; i++) {
-			if (cells[i].getColumn() == column) {
+			if (cells[i].getColumn().equals(column)) {
 				return i;
 			}
 		}

@@ -42,7 +42,10 @@ public class CacheTable<T extends IRow> extends OnlineTable {
 		this(name, pk, indices, checkConstraints, columns);
 		this.helper = helper;
 		this.converter = converter;
-		
+	}
+	
+	/**Load all the rows into this object*/
+	public void load() {
 		IDatabaseReader reader = helper.selectAll(this);
 		for (IRow row : reader) {
 			addFromIRow(row);
@@ -52,7 +55,7 @@ public class CacheTable<T extends IRow> extends OnlineTable {
 	/**Add row/s to the table
 	 * @param ts The row/s to add
 	 */
-	public void add(T... ts) {
+ 	public void add(T... ts) {
 		for (T t : ts) {
 			insert(t);
 		}

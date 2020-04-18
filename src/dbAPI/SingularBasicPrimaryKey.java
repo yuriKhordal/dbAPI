@@ -20,7 +20,7 @@ public class SingularBasicPrimaryKey extends DatabaseValue implements IBasicPrim
 	
 	@Override
 	public DatabaseValue getValue(int index) throws IndexOutOfBoundsException {
-		if (index != 0) { throw new IndexOutOfBoundsException(index); }
+		if (index != 0) { throw new IndexOutOfBoundsException("No value at index [" + index + ']'); }
 		return this;
 	}
 

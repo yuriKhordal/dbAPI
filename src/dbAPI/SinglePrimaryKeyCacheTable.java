@@ -43,7 +43,10 @@ public class SinglePrimaryKeyCacheTable<T extends IRow> extends OnlineTable {
 		this(name, pk, indices, checkConstraints, columns);
 		this.helper = helper;
 		this.converter = converter;
-		
+	}
+	
+	/**Load all the rows into this object*/
+	public void load() {
 		IDatabaseReader reader = helper.selectAll(this);
 		for (IRow row : reader) {
 			addFromIRow(row);

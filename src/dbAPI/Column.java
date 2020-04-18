@@ -96,12 +96,7 @@ public class Column implements IColumn, Cloneable {
 		if (this == obj) { return true; }
 		if (obj == null || getClass() != obj.getClass()) { return false; }
 		Column col = (Column)obj;
-		if (name != col.name || index != col.index || type != col.type
-				|| constraints.length != col.constraints.length) { return false; }
-		for (int i = 0; i < constraints.length; i++) {
-			if (!constraints[i].equals(col.constraints[i])) { return false; }
-		}
-		return true;
+		return name == col.name && index == col.index && type == col.type;
 	}
 	
 	@Override
