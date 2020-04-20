@@ -46,7 +46,7 @@ public class CheckConstraint extends Constraint {
 		if (this == obj) { return true; }
 		if (obj == null || getClass() != obj.getClass()) { return false; }
 		CheckConstraint check = (CheckConstraint)obj;
-		return name == check.name && condition == check.condition;
+		return name.equals(check.name) && condition.equals(check.condition);
 	}
 	
 	@Override

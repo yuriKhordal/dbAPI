@@ -42,7 +42,7 @@ public class DefaultConstraint extends Constraint {
 		if (this == obj) { return true; }
 		if (obj == null || getClass() != obj.getClass()) { return false; }
 		DefaultConstraint def = (DefaultConstraint)obj;
-		return name == def.name && defaultValue == def.defaultValue;
+		return name.equals(def.name) && defaultValue.equals(def.defaultValue);
 	}
 	
 	@Override

@@ -97,7 +97,7 @@ public class DatabaseValue implements Cloneable{
 		if (this == obj) {return true;}
 		if (obj == null || getClass() != obj.getClass()) {return false;}
 		DatabaseValue value = (DatabaseValue)obj;
-		return this.type == value.type && this.Value.equals(value.Value);
+		return this.type.equals(value.type) && this.Value.equals(value.Value);
 	}
 	
 	@Override

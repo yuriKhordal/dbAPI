@@ -44,7 +44,7 @@ public class Row implements IRow, Iterable<DatabaseCell>, Cloneable {
 	 */
 	public IColumn getColumn(String name) throws IllegalArgumentException {
 		for (DatabaseCell cell : cells) {
-			if (cell.getColumn().getName() == name) {
+			if (cell.getColumn().getName().equals(name)) {
 				return cell.getColumn();
 			}
 		}
@@ -76,7 +76,7 @@ public class Row implements IRow, Iterable<DatabaseCell>, Cloneable {
 	 */
 	public int getIndex(String column) throws IllegalArgumentException {
 		for (int i = 0; i < cells.length; i++) {
-			if (cells[i].getColumn().getName() == column) {
+			if (cells[i].getColumn().getName().equals(column)) {
 				return i;
 			}
 		}

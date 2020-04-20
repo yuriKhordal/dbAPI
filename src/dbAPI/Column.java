@@ -78,7 +78,7 @@ public class Column implements IColumn, Cloneable {
 	public boolean hasConstraint(ConstraintsEnum constraint) {
 		if (constraints == null) { return false; }
 		for (Constraint c : constraints) {
-			if (c.getType() == constraint) {
+			if (c.getType().equals(constraint)) {
 				return true;
 			}
 		}
@@ -96,7 +96,7 @@ public class Column implements IColumn, Cloneable {
 		if (this == obj) { return true; }
 		if (obj == null || getClass() != obj.getClass()) { return false; }
 		Column col = (Column)obj;
-		return name == col.name && index == col.index && type == col.type;
+		return name.equals(col.name) && index == col.index && type.equals(col.type);
 	}
 	
 	@Override

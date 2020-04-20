@@ -53,7 +53,7 @@ public class ForeignKeyConstraint extends Constraint {
 		if (this == obj) { return true; }
 		if (obj == null || getClass() != obj.getClass()) { return false; }
 		ForeignKeyConstraint fk = (ForeignKeyConstraint)obj;
-		return name == fk.name && reference == fk.reference && column == fk.column;
+		return name.equals(fk.name) && reference.equals(fk.reference) && column.equals(fk.column);
 	}
 	
 	@Override

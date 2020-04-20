@@ -19,7 +19,7 @@ public class NotNullConstraint extends Constraint {
 	public boolean equals(Object obj) {
 		if (this == obj) { return true; }
 		if( obj == null || getClass() != obj.getClass()) { return false; }
-		return this.name == ((NotNullConstraint)obj).name;
+		return this.name.equals(((NotNullConstraint)obj).name);
 	}
 
 	@Override

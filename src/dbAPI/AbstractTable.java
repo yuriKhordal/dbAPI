@@ -59,7 +59,7 @@ public abstract class AbstractTable implements ITable, Iterable<IRow> {
     public IColumn getColumn(String name)
     throws IllegalArgumentException{
         for(IColumn column : columns){
-            if (column.getName() == name){
+            if (column.getName().equals(name)){
                 return column;
             }
         }

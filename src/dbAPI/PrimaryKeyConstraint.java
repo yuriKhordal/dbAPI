@@ -37,7 +37,7 @@ public class PrimaryKeyConstraint extends Constraint {
 	 */
 	public IColumn getColumn(String name) throws IllegalArgumentException {
 		for (IColumn col : keyColumns) {
-			if (col.getName() == name) { return col; }
+			if (col.getName().equals(name)) { return col; }
 		}
 		throw new IllegalArgumentException("No column named '" + name + "' in the constraint");
 	}
@@ -59,7 +59,7 @@ public class PrimaryKeyConstraint extends Constraint {
 	 */
 	public boolean hasColumn(String column) {
 		for (IColumn col : keyColumns) {
-			if (col.getName() == column) { return true; }
+			if (col.getName().equals(column)) { return true; }
 		}
 		return false;
 	}
@@ -97,7 +97,7 @@ public class PrimaryKeyConstraint extends Constraint {
 		for (int i = 0; i < keyColumns.length; i++) {
 			if (!keyColumns[i].equals(pk.keyColumns[i])) { return false; }
 		}
-		if (this.name != pk.name) { return false; }
+		if (!this.name.equals(pk.name)) { return false; }
 		return true;
 	}
 	
@@ -150,7 +150,7 @@ public class PrimaryKeyConstraint extends Constraint {
 		public boolean equals(Object obj) {
 			if (this == obj) { return true; }
 			if( obj == null || getClass() != obj.getClass()) { return false; }
-			return this.name == ((BasicPrimaryKeyConstraint)obj).name;
+			return this.name.equals(((BasicPrimaryKeyConstraint)obj).name);
 		}
 	}
 }

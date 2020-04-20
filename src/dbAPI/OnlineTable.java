@@ -135,7 +135,7 @@ public class OnlineTable extends AbstractTable {
 	public boolean equals(ITable table) {
 		if (table == this) { return true; }
 		if (table == null) { return false; }
-		if (table.getName() != this.name || table.getColumnCount() != this.getColumnCount()
+		if (!table.getName().equals(this.name) || table.getColumnCount() != this.getColumnCount()
 				|| !table.getPrimaryKey().equals(pk)) { return false; }
 		
 		for(int i = 0; i < columns.length; i++) {

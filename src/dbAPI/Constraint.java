@@ -57,7 +57,7 @@ public abstract class Constraint{
 		if (this == obj) { return true; }
 		if (obj == null || getClass() != obj.getClass()) { return false; }
 		Constraint con = (Constraint)obj;
-		return name == con.name && type == con.type;
+		return name.equals(con.name) && type.equals(con.type);
 	}
 	
 	@Override

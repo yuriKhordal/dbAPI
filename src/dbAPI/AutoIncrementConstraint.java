@@ -29,7 +29,7 @@ public class AutoIncrementConstraint extends Constraint {
 		if (this == obj) { return true; }
 		if (obj == null || getClass() != obj.getClass()) { return false; }
 		AutoIncrementConstraint auto = (AutoIncrementConstraint)obj;
-		return name == auto.name;
+		return name.equals(auto.name);
 	}
 
 	@Override

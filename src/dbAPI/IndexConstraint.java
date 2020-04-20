@@ -56,7 +56,7 @@ public class IndexConstraint extends Constraint {
 		if (this == obj) { return true; }
 		if (obj == null || getClass() != obj.getClass()) { return false; }
 		IndexConstraint index = (IndexConstraint)obj;
-		return name == index.name && target == index.target && unique == index.unique;
+		return name.equals(index.name) && target.equals(index.target) && unique == index.unique;
 	}
 	
 	@Override

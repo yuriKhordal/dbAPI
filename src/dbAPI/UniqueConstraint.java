@@ -19,7 +19,7 @@ public class UniqueConstraint extends Constraint {
 	public boolean equals(Object obj) {
 		if (this == obj) { return true; }
 		if( obj == null || getClass() != obj.getClass()) { return false; }
-		return this.name == ((UniqueConstraint)obj).name;
+		return this.name.equals(((UniqueConstraint)obj).name);
 	}
 
 	@Override
